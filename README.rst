@@ -155,14 +155,14 @@ manager like ``pip``:
 
 ::
 
-    $ pip install landslide
+    $ pip install darkslide
 
 If you want to stay on the edge:
 
 ::
 
-    $ git clone https://github.com/adamzap/landslide.git
-    $ cd landslide
+    $ git clone https://github.com/ionelmc/python-darkslide
+    $ cd darkslide
     $ python setup.py build
     $ sudo python setup.py install
 
@@ -200,7 +200,7 @@ Textile
 Rendering
 =========
 
--  Run ``landslide slides.md`` or ``landslide slides.rst``
+-  Run ``darkslide slides.md`` or ``darkslide slides.rst``
 -  Enjoy your newly generated ``presentation.html``
 
 Or get it as a PDF document if PrinceXML is installed and available on
@@ -208,7 +208,7 @@ your system:
 
 ::
 
-    $ landslide README.md -d readme.pdf
+    $ darkslide README.md -d readme.pdf
     $ open readme.pdf
 
 Viewing
@@ -283,7 +283,7 @@ you get the picture. Below is a sample configuration file:
 
 ::
 
-    [landslide]
+    [darkslide]
     theme  = /path/to/my/beautiful/theme
     source = 0_my_first_slides.md
              a_directory
@@ -298,7 +298,7 @@ you get the picture. Below is a sample configuration file:
     relative = True
     linenos = inline
 
-Don't forget to declare the ``[landslide]`` section. All configuration
+Don't forget to declare the ``[darkslide]`` section. All configuration
 files must end in the .cfg extension.
 
 To generate the presentation as configured, just run:
@@ -306,7 +306,7 @@ To generate the presentation as configured, just run:
 ::
 
     $ cd /path/to/my/presentation/sources
-    $ landslide config.cfg
+    $ darkslide config.cfg
 
 Macros
 ======
@@ -363,7 +363,7 @@ Registering Macros
 
 Macros are used to transform the HTML contents of your slide.
 
-You can register your own macros by creating ``landslide.macro.Macro``
+You can register your own macros by creating ``darkslide.macro.Macro``
 derived classes, implementing a ``process(content, source=None)`` method
 and returning a tuple containing the modified contents and some css
 classes you may be wanting to add to your slide ``<div>`` element. For
@@ -372,13 +372,13 @@ example:
 ::
 
     !python
-    import landslide
+    import darkslide
 
-    class MyMacro(landslide.Macro):
+    class MyMacro(darkslide.Macro):
       def process(self, content, source=None):
         return content + '<p>plop</p>', ['plopped_slide']
 
-    g = landslide.generator.Generator(source='toto.md')
+    g = darkslide.generator.Generator(source='toto.md')
     g.register_macro(MyMacro)
     print g.render()
 
@@ -403,43 +403,43 @@ Setting Custom Destination File
 
 ::
 
-    $ landslide slides.md -d ~/MyPresentations/presentation.html
+    $ darkslide slides.md -d ~/MyPresentations/presentation.html
 
 Working with Directories
 ------------------------
 
 ::
 
-    $ landslide slides/
+    $ darkslide slides/
 
 Working with Direct Output
 --------------------------
 
 ::
 
-    $ landslide slides.md -o | tidy
+    $ darkslide slides.md -o | tidy
 
 Using an Alternate Landslide Theme
 ----------------------------------
 
 ::
 
-    $ landslide slides.md -t mytheme
-    $ landslide slides.md -t /path/to/theme/dir
+    $ darkslide slides.md -t mytheme
+    $ darkslide slides.md -t /path/to/theme/dir
 
 Embedding Base-64-Encoded Images
 --------------------------------
 
 ::
 
-    $ landslide slides.md -i
+    $ darkslide slides.md -i
 
 Exporting to PDF
 ----------------
 
 ::
 
-    $ landslide slides.md -d presentation.pdf
+    $ darkslide slides.md -d presentation.pdf
 
 Enabling mathematical notation
 ------------------------------
@@ -449,7 +449,7 @@ Enabling mathematical notation
     Note that this require writing the slides in ReST format as well as
     using Docutils 0.8 or newer.
 
-    $ landslide slides.rst -m
+    $ darkslide slides.rst -m
 
 Enabling Markdown Extensions
 ----------------------------
@@ -459,7 +459,7 @@ See documentation on available Markdown extensions
 
 ::
 
-    $ landslide slides.md -x abbr
+    $ darkslide slides.md -x abbr
 
 Theming
 -------
@@ -480,11 +480,11 @@ If a theme does not provide HTML and JS files, those from the default
 theme will be used. CSS is not optional.
 
 Last, you can also copy the whole theme directory to your presentation
-one by passing the ``--copy-theme`` option to the ``landslide`` command:
+one by passing the ``--copy-theme`` option to the ``darkslide`` command:
 
 ::
 
-    $ landslide slides.md -t /path/to/some/theme --copy-theme
+    $ darkslide slides.md -t /path/to/some/theme --copy-theme
 
 User stylesheets and Javascripts
 ================================
@@ -492,12 +492,12 @@ User stylesheets and Javascripts
 If you don't want to bother making your own theme, you can include your
 own user css and js files to the generated presentation.
 
-This feature is only available if you use a landslide configuration
+This feature is only available if you use a darkslide configuration
 file, by setting the ``css`` and/or ``js`` flags:
 
 ::
 
-    [landslide]
+    [darkslide]
     theme  = /path/to/my/beautiful/theme
     source = slides.mdown
     css =    custom.css
@@ -509,7 +509,7 @@ and ``powerpoint.js`` files within the ``<head>`` section of the
 presentation html file.
 
 **NOTE:** Paths to the css and js files must be relative to the
-directory you're running the ``landslide`` command from.
+directory you're running the ``darkslide`` command from.
 
 Publishing your Presentation Online
 ===================================
@@ -520,11 +520,11 @@ have all asset links relative to the root of your presentation;
 
 ::
 
-    $ landslide slides.md --relative --copy-theme
+    $ darkslide slides.md --relative --copy-theme
 
 That way, you'll just have to host the whole presentation directory to a
 webserver. Of course, no Python nor PHP nor anything else than a HTTP
-webserver (like Apache) is required to host a landslide presentation.
+webserver (like Apache) is required to host a darkslide presentation.
 
 `Here's an example <http://www.akei.com/presentations/2011-Djangocong/index.html>`__.
 
